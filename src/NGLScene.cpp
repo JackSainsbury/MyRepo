@@ -12,7 +12,7 @@
 NGLScene::NGLScene()
 {
     // re-size the widget to that of the parent (in this case the GLFrame passed in on construction)
-    setTitle("Blank NGL");
+    setTitle("100% original, certainly not Blank NGL");
 }
 
 
@@ -42,14 +42,19 @@ void NGLScene::initializeGL()
     // enable multisampling for smoother drawing
     glEnable(GL_MULTISAMPLE);
 
+    //################################################# <issues>
+
     Component* myGeo = new GeometryComponent();
 
+    std::shared_ptr<Component> testSharedPtr = std::shared_ptr<Component>(myGeo);
 
-    Entity myEntity("TestEntity");
+    //std::shared_ptr<Component> testSharedPtr2 = std::shared_ptr<Component>(new GeometryComponent());
 
-    myEntity.addComponent(myGeo);
+    //unless the base destructor is call which seems like a terrible idea.
 
-    myEntity.update();
+    myGeo->~Component();
+
+    //################################################# </issues>
 }
 
 

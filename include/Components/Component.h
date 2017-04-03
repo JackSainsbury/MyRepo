@@ -4,6 +4,7 @@
 #include<iostream>
 #include <typeinfo>
 
+//enum type for ease of "addcomponent(ComponentyType::Type)
 namespace ComponentType{
     enum EnumType
     {
@@ -14,16 +15,17 @@ namespace ComponentType{
     };
 }
 
+//Virtual base class for all components
 class Component
 {
 public:
-    Component(ComponentType::EnumType _type);
+    Component(ComponentType::EnumType _type); //constructed with type - from inherited class
     ComponentType::EnumType Type;
-    bool isActive;
+    bool isActive;//for later use disabling components
 
-    virtual void update(){};
+    virtual void update(){};//virtual update function for Entity update { for all components -> update }
 
-    virtual ~Component(){std::cout<<"IN BASE DESTRUCTOR \n \n";}
+    virtual ~Component(){}//virtual destructor
 };
 
 #endif // COMPONENT_H

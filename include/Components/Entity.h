@@ -16,8 +16,9 @@ public:
     //all entities are going to have a transform - world game objects by default (doesn't exist in the component vector but the get and set component are designed to handle this.)
     Component* Transform = new TransformComponent();
 
-    //search for the component of "type" return a pointer to it and return a null ptr if it couldn't be found
+    //search for the component of "type" return a pointer to it and return a null ptr if it couldn't be found. Returning a pointer? maybe not being deleted
     Component *getComponent(ComponentType::EnumType _type);
+
     //pass an existing component to the vector
     void addComponent(Component *referenceComponent);
     //create a new component of component type on the vector
