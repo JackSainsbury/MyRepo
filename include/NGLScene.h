@@ -4,6 +4,7 @@
 
 #include <QOpenGLWindow>
 #include "WindowParams.h"
+
 //----------------------------------------------------------------------------------------------------------------------
 /// @file NGLScene.h
 /// @brief this class inherits from the Qt OpenGLWindow and allows us to use NGL to draw OpenGL

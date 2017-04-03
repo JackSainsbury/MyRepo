@@ -1,4 +1,3 @@
-# BlankNGL
-![alt tag](http://nccastaff.bournemouth.ac.uk/jmacey/GraphicsLib/Demos/BlankNGL.png)
+# BlankNgl - basic entity models
 
-This is an empty boilerplate framework for NGL projects, it creates an empty window and draws nothing
+limited ngl functionality, issue with virtual base classes
