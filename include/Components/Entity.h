@@ -28,9 +28,10 @@ public:
     //update the entity's components
     void update(){Transform->update(); for(auto& c: components) c->update();}
 
-private:
-    //vector of all this entities components
+//private:
+    //vector of all this entities components (usually private but for NGLScene::InitializeGL std::cout<<MyEntity.components.size(); made public
     std::vector<std::shared_ptr<Component>> components;
+
 
 protected:
     std::string m_name;//non unique name of the entity instance

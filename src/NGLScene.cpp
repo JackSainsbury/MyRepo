@@ -42,19 +42,36 @@ void NGLScene::initializeGL()
     // enable multisampling for smoother drawing
     glEnable(GL_MULTISAMPLE);
 
-    //################################################# <issues>
 
-    Component* myGeo = new GeometryComponent();
+    //Begining of clusterbomb
 
-    std::shared_ptr<Component> testSharedPtr = std::shared_ptr<Component>(myGeo);
+    Entity myEntity("New Entity"); //create a new entity
 
-    //std::shared_ptr<Component> testSharedPtr2 = std::shared_ptr<Component>(new GeometryComponent());
+    Component* myRB = new RigidBodyComponent();
 
-    //unless the base destructor is call which seems like a terrible idea.
+    myEntity.addComponent(ComponentType::Transform); //attempt adding new TransformComponent by passing type to addComponent(ComponentType::EnumType)
 
-    myGeo->~Component();
+    myEntity.addComponent(myRB); //attempt adding RigidBodyComponent to components vector by passing myRB pointer { base myRb = new derived(); }
+    //does this method of dynamic polymorphism require a virtual cloning method or downcasting?
 
-    //################################################# </issues>
+    myEntity.addComponent(ComponentType::Geometry); //attempt adding new GeometryComponent by passing type to addComponent(ComponentType::EnumType)
+
+    //cerr -> when the program does bomb out (the std::cout<<) in Entity::Addcomponent (Entity.cpp) is called however adding a "new GeometryNode" as a Component shared_ptr kills it.
+
+    //<pathetic lack of ability, with regards to string concatination>
+    std::cout<<"\n\nComponents list is currently holding: ";
+    std::cout<< myEntity.components.size();
+    std::cout<<" components. \n\n";
+    //</pathetic lack of ability, with regards to string concatination>
+
+    //size should be 2 as Transform Component already exists though not as components[0].
+
+    myEntity.update();
+    //The virtual update cycling through the vector of shared pointers is working a charm,
+    //issues arise when more heap-allocated member variable are added to a derived Component class (in this cas I'm trying GeometryComponent) betweem compilations
+
+
+    //End of clusterbomb
 }
 
 

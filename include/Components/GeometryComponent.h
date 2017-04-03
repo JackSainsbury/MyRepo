@@ -14,12 +14,16 @@ public:
 
 private:
     //if compiled currently - will run, after this, if more ptrs/std::strings/vectors are added, the project must be cleaned befor it can
-    //recompile. Currently this "GeometryComponent" is only ever being created/called from NGLScene.cpp in the InitializeGL
+    //recompile. See NGLScene::InitializeGL
     std::unique_ptr<ngl::Obj> m_mesh;//heap-allocated attribute - leak?
-    std::unique_ptr<ngl::Obj> m_mesh2;//heap-allocated attribute - leak?
-    std::unique_ptr<ngl::Obj> m_mesh3;//heap-allocated attribute - leak?
-    std::unique_ptr<ngl::Obj> m_mesh4;//heap-allocated attribute - leak?
-    std::unique_ptr<ngl::Obj> m_mesh5;//heap-allocated attribute - leak?
+
+    //on 2nd compile, uncomment these nglObj pointers and attempt a recompile without cleaning project,
+    //I am receiving "The program has unexpectedly finished."
+
+    //std::unique_ptr<ngl::Obj> m_mesh2;//
+    //std::unique_ptr<ngl::Obj> m_mesh3;//
+    //std::vector<std::unique_ptr<ngl::Obj>> m_mesh_vector1;//
+    //std::string m_String1//heap-allocated attribute - leak?
 };
 
 #endif // GEOMETRY_COMPONENT_H
