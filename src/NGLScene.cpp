@@ -70,6 +70,7 @@ void NGLScene::initializeGL()
     //The virtual update cycling through the vector of shared pointers is working a charm,
     //issues arise when more heap-allocated member variable are added to a derived Component class (in this cas I'm trying GeometryComponent) betweem compilations
 
+    //From the debug std::cout(s) we can see the components are all added and working as expected until the data is changed;
 
     //End of clusterbomb
 }
