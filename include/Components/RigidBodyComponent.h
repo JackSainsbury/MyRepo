@@ -10,7 +10,11 @@ public:
 
     ~RigidBodyComponent() = default;
 
+    inline void setVelocity(float _vel) { velocity = _vel; }
+    inline float getVelocity() { return velocity; }
+
 private:
+    float velocity;
 };
 
 #endif // RIGIDBODYCOMPONENT_H

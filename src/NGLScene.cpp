@@ -9,6 +9,10 @@
 #include "GeometryComponent.h"
 #include "Entity.h"
 
+#include <boost/fusion/include/map.hpp>
+#include <boost/fusion/include/pair.hpp>
+#include <boost/fusion/container/set.hpp>
+
 NGLScene::NGLScene()
 {
     // re-size the widget to that of the parent (in this case the GLFrame passed in on construction)
@@ -43,7 +47,6 @@ void NGLScene::initializeGL()
     glEnable(GL_MULTISAMPLE);
 
 
-    //Begining of clusterbomb
 
     Entity myEntity("New Entity"); //create a new entity
 
@@ -56,23 +59,9 @@ void NGLScene::initializeGL()
 
     myEntity.addComponent(ComponentType::Geometry); //attempt adding new GeometryComponent by passing type to addComponent(ComponentType::EnumType)
 
-    //cerr -> when the program does bomb out (the std::cout<<) in Entity::Addcomponent (Entity.cpp) is called however adding a "new GeometryNode" as a Component shared_ptr kills it.
-
-    //<pathetic lack of ability, with regards to string concatination>
-    std::cout<<"\n\nComponents list is currently holding: ";
-    std::cout<< myEntity.components.size();
-    std::cout<<" components. \n\n";
-    //</pathetic lack of ability, with regards to string concatination>
-
-    //size should be 2 as Transform Component already exists though not as components[0].
+    GeometryComponent* x = myEntity.getComponent(new GeometryComponent*());
 
     myEntity.update();
-    //The virtual update cycling through the vector of shared pointers is working a charm,
-    //issues arise when more heap-allocated member variable are added to a derived Component class (in this cas I'm trying GeometryComponent) betweem compilations
-
-    //From the debug std::cout(s) we can see the components are all added and working as expected until the data is changed;
-
-    //End of clusterbomb
 }
 
 
