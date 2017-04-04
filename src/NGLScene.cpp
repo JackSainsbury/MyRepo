@@ -55,11 +55,10 @@ void NGLScene::initializeGL()
     myEntity.addComponent(ComponentType::Transform); //attempt adding new TransformComponent by passing type to addComponent(ComponentType::EnumType)
 
     myEntity.addComponent(myRB); //attempt adding RigidBodyComponent to components vector by passing myRB pointer { base myRb = new derived(); }
-    //does this method of dynamic polymorphism require a virtual cloning method or downcasting?
 
     myEntity.addComponent(ComponentType::Geometry); //attempt adding new GeometryComponent by passing type to addComponent(ComponentType::EnumType)
 
-    GeometryComponent* x = myEntity.getComponent(new GeometryComponent*());
+    myEntity.getComponent(new RigidBodyComponent*())->setVelocity(100.0f);
 
     myEntity.update();
 }
