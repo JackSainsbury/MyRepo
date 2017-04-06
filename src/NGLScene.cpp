@@ -48,28 +48,27 @@ void NGLScene::initializeGL()
 
 
 
-    Entity myEntity("New Entity"); //create a new entity
+    myEntity = new Entity("New Entity"); //create a new entity
 
-    Component* myRB = new RigidBodyComponent();
+    myEntity->addComponent<GeometryComponent>(); //attempt adding new TransformComponent by passing type to addComponent(ComponentType::EnumType) (fails)
 
-    myEntity.addComponent(ComponentType::Transform); //attempt adding new TransformComponent by passing type to addComponent(ComponentType::EnumType)
+    GeometryComponent* EntityGeo =  myEntity->getComponent<GeometryComponent>();
 
-    myEntity.addComponent(myRB); //attempt adding RigidBodyComponent to components vector by passing myRB pointer { base myRb = new derived(); }
+    EntityGeo->loadMesh("models/objectstooof.obj","models/winder (copy).tiff");
 
-    myEntity.addComponent(ComponentType::Geometry); //attempt adding new GeometryComponent by passing type to addComponent(ComponentType::EnumType)
+    EntityGeo->m_mesh->createVAO();
 
-    myEntity.getComponent(new RigidBodyComponent*())->setVelocity(100.0f);
+    myEntity->update();
 
-    myEntity.update();
 }
-
-
 
 void NGLScene::paintGL()
 {
     // clear the screen and depth buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glViewport(0,0,m_win.width,m_win.height);
+
+    myEntity->getComponent<GeometryComponent>()->m_mesh->draw();
 }
 
 //----------------------------------------------------------------------------------------------------------------------

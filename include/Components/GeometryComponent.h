@@ -12,10 +12,12 @@ public:
 
     ~GeometryComponent(){}//virtual destructor (though I believe it would be virtual anyway)
 
-private:
+    void loadMesh(std::string _fName, std::string _texName);
     //if compiled currently - will run, after this, if more ptrs/std::strings/vectors are added, the project must be cleaned befor it can
-    //recompile. See NGLScene::InitializeGL
     std::unique_ptr<ngl::Obj> m_mesh;//heap-allocated attribute - leak?
+
+private:
+
 
 };
 

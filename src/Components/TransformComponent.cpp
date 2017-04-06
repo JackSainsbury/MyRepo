@@ -9,9 +9,7 @@ TransformComponent::TransformComponent() : Component(ComponentType::Transform){
 
 //update this component
 void TransformComponent::update(){
-    m_transformation.setPosition(m_position);
-    m_transformation.setRotation(m_rotation);
-    m_transformation.setScale(m_scale);
+    std::cout<<"TRANSFORMUPDATE";
 }
 
 //Move transform by _delta Pos

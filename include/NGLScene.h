@@ -4,6 +4,7 @@
 
 #include <QOpenGLWindow>
 #include "WindowParams.h"
+#include "Entity.h"
 
 //----------------------------------------------------------------------------------------------------------------------
 /// @file NGLScene.h
@@ -79,6 +80,7 @@ private:
     WinParams m_win;
     /// position for our model
     ngl::Vec3 m_modelPos;
+    Entity* myEntity;
 
 };
 

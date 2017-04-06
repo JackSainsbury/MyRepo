@@ -7,3 +7,7 @@ GeometryComponent::GeometryComponent() : Component(ComponentType::Geometry){
 void GeometryComponent::update(){
     std::cout<<"update geom \n";
 }
+
+void GeometryComponent::loadMesh(std::string _fName, std::string _texName){
+    m_mesh.reset(new ngl::Obj(_fName,_texName));
+}

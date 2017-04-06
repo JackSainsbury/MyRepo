@@ -14,7 +14,7 @@ Entity::Entity(std::string _name){
 }
 
 //used for adding a "new" components which is created via the default constructors (this seems very messy - consider revision)
-void Entity::addComponent(ComponentType::EnumType _type){
+void Entity::createComponent(ComponentType::EnumType _type){
     //if attempting to add of type Transform, return that transform already exists. (by default)
     if(_type == ComponentType::Transform){
         std::cout<< m_name + " already has a component of type Transform; it is a default Entity Component.";
@@ -41,18 +41,6 @@ void Entity::addComponent(ComponentType::EnumType _type){
     }
 }
 
-//pass exisingComponent add, messy messy messy. delete ptr?
-void Entity::addComponent(Component* referenceComponent){
-    if(referenceComponent->Type == ComponentType::Transform){ //similar default transform check
-        std::cout<< m_name + " already has a component of type Transform";
-    }else{
-        if(searchComponent(referenceComponent->Type) == nullptr){ //if the component check returns null, the doesn't exist (future proof multiple same type components distinguishing)
-            components.push_back(std::unique_ptr<Component>(referenceComponent));//MESSY AND DANGEROUS MUST REVISE. std::shared_ptr<Component>(Component*) feels ghastly
-        }else
-            std::cout<< m_name + " already has a component of type " + typeid(referenceComponent->Type).name(); //similar other exists check
-    }
-}
-
 //pass a type and check if component exists - return pointer so null can be tested or Component
 Component *Entity::searchComponent(ComponentType::EnumType _type){
     if(_type == ComponentType::Transform){
@@ -66,6 +54,7 @@ Component *Entity::searchComponent(ComponentType::EnumType _type){
         return nullptr;//component doesn't exist return null
     }
 }
+
 
 
 /*
@@ -86,6 +75,7 @@ void Entity::removeComponent(Component *referenceComponent){
 }
 
 
+
 //pass exisingComponent add, messy messy messy. delete ptr?
 void Entity::removeComponent(ComponentType _type){
     if(_type == ComponentType::Transform){ //similar default transform check
@@ -101,4 +91,5 @@ void Entity::removeComponent(ComponentType _type){
         }
     }
 }
+
 */
